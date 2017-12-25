@@ -1,0 +1,43 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Locations list</h1>
+
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Date de debut</th>
+                <th>Date de fin</th>
+                <th>Cin de client </th>
+                <th>Immatricule de voiture</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for location in locations %}
+            <tr>
+                <td>{% if location.dateDeDebut %}{{ location.dateDeDebut|date('Y-m-d') }}{% endif %}</td>
+                <td>{% if location.dateDeFin %}{{ location.dateDeFin|date('Y-m-d') }}{% endif %}</td>
+                <td>{{ location.client.cin }}</td>
+                <td>{{ location.voiture.imatricule }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('location_show', { 'id': location.id }) }}" class="btn btn-default">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('location_edit', { 'id': location.id }) }}" class="btn btn-primary">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('location_new') }}" class="btn btn-success">Ajouter une location</a>
+        </li>
+    </ul>
+{% endblock %}

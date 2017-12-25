@@ -1,0 +1,45 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1> Liste des Voitures </h1>
+
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+                <th>Imatricule</th>
+                <th>Model</th>
+                <th>Marque</th>
+                <th>Carburant</th>
+                <th>Prix</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for voiture in voitures %}
+            <tr>
+                <td><a href="{{ path('voiture_show', { 'id': voiture.id }) }}">{{ voiture.imatricule }}</a></td>
+                <td>{{ voiture.model }}</td>
+                <td>{{ voiture.marque }}</td>
+                <td>{{ voiture.carburant }}</td>
+                <td>{{ voiture.prix }}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('voiture_show', { 'id': voiture.id }) }}" class="btn btn-default">voire details</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('voiture_edit', { 'id': voiture.id }) }}" class="btn btn-primary">Modifier</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('voiture_new') }}" class="btn btn-primary">Ajouter une voiture</a>
+        </li>
+    </ul>
+{% endblock %}

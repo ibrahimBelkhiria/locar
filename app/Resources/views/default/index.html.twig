@@ -1,0 +1,29 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+
+
+    <div class="jumbotron">
+        <div class="container">
+            <h1>Bienvenu Chez Locar!</h1>
+
+
+            {% if is_granted('ROLE_USER') %}
+            <p><a class="btn btn-primary btn-lg" href="{{ path('client_index') }}" role="button">Gestion des Clients &raquo;</a>
+                <a class="btn btn-success btn-lg" href="{{ path('location_index') }}" role="button">Gestion des Locations &raquo;</a>
+                <a class="btn btn-default btn-lg" href="{{ path('voiture_index') }}" role="button">Gestion des Voitures &raquo;</a>
+            </p>
+            {% else %}
+                <p>
+                    <a class="btn btn-primary btn-lg" href="{{ path('fos_user_security_login') }}" role="button">Login &raquo;</a>
+                    <a class="btn btn-primary btn-lg" href="{{ path('fos_user_registration_register') }}" role="button">Register &raquo;</a>
+                </p>
+
+            {% endif %}
+        </div>
+    </div>
+
+
+
+
+{% endblock %}

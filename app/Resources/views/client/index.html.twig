@@ -1,0 +1,46 @@
+{% extends 'base.html.twig' %}
+
+{% block body %}
+    <h1>Clients list</h1>
+
+    <table class="table table-bordered">
+        <thead>
+            <tr>
+
+                <th>Nom</th>
+                <th>Prenom</th>
+                <th>Cin</th>
+                <th>Telephone</th>
+                <th>Date de naissance</th>
+                <th>Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+        {% for client in clients %}
+            <tr>
+                <td>{{ client.nom }}</td>
+                <td>{{ client.prenom }}</td>
+                <td>{{ client.cin }}</td>
+                <td>{{ client.telephone }}</td>
+                <td>{% if client.dateDeNaissance %}{{ client.dateDeNaissance|date('Y-m-d') }}{% endif %}</td>
+                <td>
+                    <ul>
+                        <li>
+                            <a href="{{ path('client_show', { 'id': client.id }) }}" class="btn btn-default">show</a>
+                        </li>
+                        <li>
+                            <a href="{{ path('client_edit', { 'id': client.id }) }}" class="btn btn-primary">edit</a>
+                        </li>
+                    </ul>
+                </td>
+            </tr>
+        {% endfor %}
+        </tbody>
+    </table>
+
+    <ul>
+        <li>
+            <a href="{{ path('client_new') }}" class="btn btn-success">Ajouter un client</a>
+        </li>
+    </ul>
+{% endblock %}
