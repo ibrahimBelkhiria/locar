@@ -30,14 +30,14 @@
 
     <ul>
         <li>
-            <a href="{{ path('voiture_index') }}">Back to the list</a>
+            <a href="{{ path('voiture_index') }}" class="btn btn-default">Back to the list</a>
         </li>
         <li>
-            <a href="{{ path('voiture_edit', { 'id': voiture.id }) }}">Edit</a>
+            <a href="{{ path('voiture_edit', { 'id': voiture.id }) }}" class="btn btn-primary">Edit</a>
         </li>
         <li>
             {{ form_start(delete_form) }}
-                <input type="submit" value="Delete">
+                <input type="submit" value="Delete" class="btn btn-danger">
             {{ form_end(delete_form) }}
         </li>
     </ul>
